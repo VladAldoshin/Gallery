@@ -23,3 +23,19 @@ window.addEventListener('resize', ()=>{
   pos.y = innerHeight/2
   gsap.set('circle', {duration:0.3, attr:{cx:pos.x, cy:pos.y}})
 })
+
+stage.addEventListener('mouseenter', (e)=>{
+  loop.pause()
+  stage.addEventListener('mousemove', mouseFollow)
+  mouseClickOn()
+})
+
+stage.addEventListener('mouseleave', (e)=>{
+  mouseClickOff()
+  stage.removeEventListener('mousemove', mouseFollow)
+  pos.x = innerWidth/2
+  pos.y = innerHeight/2
+  gsap.to('circle', {attr:{cx:pos.x, cy:pos.y}, ease:'power2.inOut'})
+  gsap.to(imgFg.children[0], {attr:{x:'-5%', y:'-5%'}})
+  loop.play(0)
+})
