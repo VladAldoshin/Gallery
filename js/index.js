@@ -39,3 +39,14 @@ stage.addEventListener('mouseleave', (e)=>{
   gsap.to(imgFg.children[0], {attr:{x:'-5%', y:'-5%'}})
   loop.play(0)
 })
+function mouseFollow(e){
+  pos.x = e.pageX
+  pos.y = e.pageY
+  gsap.to('circle', {duration:0.3, attr:{cx:pos.x, cy:pos.y}})
+  gsap.to(imgFg.children[0], {
+    attr:{
+      x:gsap.utils.interpolate('0%','-10%',pos.x/innerWidth),
+      y:gsap.utils.interpolate('0%','-10%',pos.y/innerHeight)  
+    }
+  })
+}
