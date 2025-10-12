@@ -39,6 +39,16 @@ stage.addEventListener('mouseleave', (e)=>{
   gsap.to(imgFg.children[0], {attr:{x:'-5%', y:'-5%'}})
   loop.play(0)
 })
+function mouseClickOn(){  
+  stage.addEventListener('mousedown', maskConstrict)
+  stage.addEventListener('mouseup', nextImg)
+}
+
+function mouseClickOff(){
+  stage.removeEventListener('mousedown', maskConstrict)
+  stage.removeEventListener('mouseup', nextImg)
+}
+
 function mouseFollow(e){
   pos.x = e.pageX
   pos.y = e.pageY
