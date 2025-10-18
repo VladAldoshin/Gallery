@@ -60,3 +60,19 @@ function mouseFollow(e){
     }
   })
 }
+function maskConstrict(e){
+  gsap.to('circle', {duration:0.3, attr:{r:(i)=>[30,50][i]}})
+}
+
+function nextImg(){
+  mouseClickOff()
+  gsap.timeline()
+    .to('circle', {duration:0.4, attr:{r:innerWidth}, ease:'power3.in', stagger:-0.1})
+    .add(()=>{
+      imgFg.append(imgBg.children[imgBg.children.length-1])
+      imgBg.prepend(imgFg.children[0])
+      gsap.set('circle', {attr:{r:0}})
+    })
+    .fromTo('circle', {attr:{r:0, cx:pos.x, cy:pos.y}},{attr:{r:(i)=>[35,45][i]}, ease:'power2.inOut', stagger:-0.1}, 0.5)
+    .add(mouseClickOn)
+}
