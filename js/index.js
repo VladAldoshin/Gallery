@@ -76,3 +76,10 @@ function nextImg(){
     .fromTo('circle', {attr:{r:0, cx:pos.x, cy:pos.y}},{attr:{r:(i)=>[35,45][i]}, ease:'power2.inOut', stagger:-0.1}, 0.5)
     .add(mouseClickOn)
 }
+imgFg.append(imgBg.children[imgBg.children.length-1])
+gsap.fromTo('circle', {attr:{cx:pos.x, cy:pos.y}}, {attr:{r:(i)=>[35,45][i]}, ease:'power2.inOut'})
+
+
+const loop = gsap.timeline({repeatRefresh:true, repeat:-1})  
+  .add(maskConstrict, 3)
+  .add(nextImg, 3.15)
